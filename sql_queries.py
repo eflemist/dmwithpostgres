@@ -1,15 +1,14 @@
 # DROP TABLES
 
-songplay_table_drop = ""
-user_table_drop = ""
-song_table_drop = ""
-artist_table_drop = ""
-time_table_drop = ""
+songplay_table_drop = "DROP table songplay_fact"
+user_table_drop = "DROP table user_dim"
+song_table_drop = "DROP table song_dim"
+artist_table_drop = "DROP table artist_dim"
+time_table_drop = "DROP table time_dim"
 
 # CREATE TABLES
 
-songplay_table_create = ("""
-""")
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay (song_title varchar, artist_name varchar, year int, album_name varchar, single varchar);""")
 
 user_table_create = ("""
 """)
