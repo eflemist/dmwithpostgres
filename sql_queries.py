@@ -1,7 +1,7 @@
 # DROP TABLES
 
 songplay_table_drop = "DROP TABLE IF EXISTS songplay_fact"
-user_table_drop = "DROP TABLE IF EXISTS table user_dim"
+user_table_drop = "DROP TABLE IF EXISTS user_dim"
 song_table_drop = "DROP TABLE IF EXISTS song_dim"
 artist_table_drop = "DROP TABLE IF EXISTS artist_dim"
 time_table_drop = "DROP TABLE IF EXISTS time_dim"
