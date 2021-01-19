@@ -23,18 +23,13 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time_dim (start_time varchar,
 songplay_table_insert = ("""
 """)
 
-user_table_insert = ("""
-""")
-
+user_table_insert = ("""INSERT INTO user_dim (user_id, first_name, last_name, gender, level) VALUES (%s, %s, %s, %s, %s)""")
+ 
 song_table_insert = ("""INSERT INTO song_dim (artist_id, song_id, title, duration, year) VALUES (%s, %s, %s, %s, %s)""")
 
+artist_table_insert = ("""INSERT INTO artist_dim (artist_id, artist_name, artist_latitude, artist_longitude, artist_location) VALUES (%s, %s, %s, %s, %s)""")
 
-artist_table_insert = ("""
-""")
-
-
-time_table_insert = ("""
-""")
+time_table_insert = ("""INSERT INTO time_dim (start_time, year, month, week, weakday, day, hour) VALUES (%s, %s, %s, %s, %s, %s, %s)""")
 
 # FIND SONGS
 
