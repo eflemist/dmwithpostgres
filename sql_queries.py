@@ -33,8 +33,7 @@ time_table_insert = ("""INSERT INTO time_dim (start_time, year, month, week, wea
 
 # FIND SONGS
 
-song_select = ("""
-""")
+song_select = ("""SELECT sd.song_id, ad.artist_id FROM song_dim sd JOIN artist_dim ad ON sd.artist_id = ad.artist_id WHERE sd.title = %s AND sd.duration = %s AND ad.artist_name = %s """)
 
 # QUERY LISTS
 
