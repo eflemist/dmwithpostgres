@@ -119,8 +119,8 @@ def main():
     - closes the connection. 
     """
     
-    #conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
-    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=postgres")
+    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
+    #conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=postgres")
     cur = conn.cursor()
 
     process_data(cur, conn, filepath='data/song_data', func=process_song_file)
