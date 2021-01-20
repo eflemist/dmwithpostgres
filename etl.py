@@ -6,6 +6,8 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """ extracts data from file and populates the song and artist dimension tables """
+    
     # open song file
     dataset = pd.read_json(filepath, lines=True)
     df = pd.DataFrame(dataset, columns=['artist_id', 'song_id', 'title', 'duration', 'year', 'artist_name', 'artist_latitude', 'artist_longitude', 'artist_location'])
@@ -22,6 +24,9 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """ extracts data from file and populates the time and user dimension tables
+        and the songplay fact table  """    
+    
     # open log file
     dataset = pd.read_json(filepath, lines=True)
     df = pd.DataFrame(dataset)
@@ -78,6 +83,10 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """ reads thru directory and process data in ech file
+        the func parameter is the name of function that is
+        called on each file """    
+    
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -99,6 +108,17 @@ def process_data(cur, conn, filepath, func):
         #    break
 
 def main():
+    """
+    - Establishes connection with the sparkify database and gets
+    cursor to it.  
+    
+    - process data in the files located in song_data directory.  
+    
+    - process data in the files located in log_data directory. 
+    
+    - closes the connection. 
+    """
+    
     #conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=postgres")
     cur = conn.cursor()
