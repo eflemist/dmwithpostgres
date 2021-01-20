@@ -10,7 +10,7 @@ time_table_drop = "DROP TABLE IF EXISTS time_dim"
 
 songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay_fact (songplay_id serial, song_id varchar, artist_id varchar, session_id int, user_id int, level varchar, location varchar, start_time varchar, user_agent varchar);""")
 
-user_table_create = ("""CREATE TABLE IF NOT EXISTS user_dim (user_id int, first_name varchar, last_name varchar, gender varchar, level varchar);""")
+user_table_create = ("""CREATE TABLE IF NOT EXISTS user_dim (user_id int NOT NULL, first_name varchar, last_name varchar, gender varchar, level varchar, CONSTRAINT user_dim_pkey PRIMARY KEY (user_id));""")
 
 song_table_create = ("""CREATE TABLE IF NOT EXISTS song_dim (song_id varchar, artist_id varchar, title varchar, year varchar, duration varchar);""")
 
@@ -22,7 +22,7 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time_dim (start_time varchar,
 
 songplay_table_insert = ("""INSERT INTO songplay_fact (song_id, artist_id, session_id, user_id, level, location, start_time, user_agent) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""")
 
-user_table_insert = ("""INSERT INTO user_dim (user_id, first_name, last_name, gender, level) VALUES (%s, %s, %s, %s, %s)""")
+user_table_insert = ("""INSERT INTO user_dim (user_id, first_name, last_name, gender, level) VALUES (%s, %s, %s, %s, %s) ON CONFLICT ON CONSTRAINT user_dim_pkey DO NOTHING""")
  
 song_table_insert = ("""INSERT INTO song_dim (artist_id, song_id, title, duration, year) VALUES (%s, %s, %s, %s, %s)""")
 
