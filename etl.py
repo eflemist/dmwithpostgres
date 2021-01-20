@@ -41,29 +41,29 @@ def process_log_file(cur, filepath):
     df['hour'] = df['ts'].dt.hour
     
     # insert time data records
-    ##time_data = [df['starttime'], df['year'], df['month'], df['week'], df['weekday'], df['day'], df['hour']]
-    ##column_labels = (['start_time', 'year', 'month', 'week', 'weekday', 'day', 'hour'])
+    time_data = [df['starttime'], df['year'], df['month'], df['week'], df['weekday'], df['day'], df['hour']]
+    column_labels = (['start_time', 'year', 'month', 'week', 'weekday', 'day', 'hour'])
 
-    ##time_df = pd.concat(time_data, axis=1, keys=column_labels)
+    time_df = pd.concat(time_data, axis=1, keys=column_labels)
 
-    ##for i, row in time_df.iterrows():
-    ##    cur.execute(time_table_insert, list(row))
+    for i, row in time_df.iterrows():
+        cur.execute(time_table_insert, list(row))
 
     # load user table
-    ##user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
-    ##user_df = user_df.drop_duplicates() 
+    user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']]
+    user_df = user_df.drop_duplicates() 
 
     # insert user records
-    ##for i, row in user_df.iterrows():
-    ##    cur.execute(user_table_insert, row)
+    for i, row in user_df.iterrows():
+        cur.execute(user_table_insert, row)
 
     # insert songplay records
     for index, row in df.iterrows():
         
         # get songid and artistid from song and artist tables
         cur.execute(song_select, (row.song, str(row.length), row.artist))
-        ##print(song_select)
-        ##print(row.song, str(row.length), row.artist)
+        #print(song_select)
+        #print(row.song, str(row.length), row.artist)
         
         results = cur.fetchone()
         
@@ -92,7 +92,7 @@ def process_data(cur, conn, filepath, func):
     # iterate over files and process
     for i, datafile in enumerate(all_files, 1):
         func(cur, datafile)
-        conn.commit()
+        #conn.commit()
         print('{}/{} files processed.'.format(i, num_files))
 
         #if i == 2:
@@ -103,7 +103,7 @@ def main():
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=postgres")
     cur = conn.cursor()
 
-    #process_data(cur, conn, filepath='data/song_data', func=process_song_file)
+    process_data(cur, conn, filepath='data/song_data', func=process_song_file)
     process_data(cur, conn, filepath='data/log_data', func=process_log_file)
 
     conn.close()
