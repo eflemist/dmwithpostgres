@@ -8,13 +8,13 @@ time_table_drop = "DROP TABLE IF EXISTS time_dim"
 
 # CREATE TABLES
 
-songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay_fact (songplay_id serial, song_id varchar, artist_id varchar, session_id int, user_id int, level varchar, location varchar, start_time varchar, user_agent varchar, CONSTRAINT songplay_fact_pkey PRIMARY KEY (songplay_id));""")
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplay_fact (songplay_id serial, song_id varchar NOT NULL, artist_id varchar NOT NULL, session_id int, user_id int, level varchar, location varchar, start_time varchar NOT NULL, user_agent varchar, CONSTRAINT songplay_fact_pkey PRIMARY KEY (songplay_id));""")
 
 user_table_create = ("""CREATE TABLE IF NOT EXISTS user_dim (user_id int NOT NULL, first_name varchar, last_name varchar, gender varchar, level varchar, CONSTRAINT user_dim_pkey PRIMARY KEY (user_id));""")
 
-song_table_create = ("""CREATE TABLE IF NOT EXISTS song_dim (song_id varchar NOT NULL, artist_id varchar, title varchar, year varchar, duration varchar, CONSTRAINT song_dim_pkey PRIMARY KEY (song_id));""")
+song_table_create = ("""CREATE TABLE IF NOT EXISTS song_dim (song_id varchar NOT NULL, artist_id varchar NOT NULL, title varchar, year varchar, duration varchar, CONSTRAINT song_dim_pkey PRIMARY KEY (song_id));""")
 
-artist_table_create = ("""CREATE TABLE IF NOT EXISTS artist_dim (artist_id varchar NOT NULL, artist_name varchar, artist_location varchar, artist_latitude varchar, artist_longitude varchar, CONSTRAINT artist_dim_pkey PRIMARY KEY (artist_id));""")
+artist_table_create = ("""CREATE TABLE IF NOT EXISTS artist_dim (artist_id varchar NOT NULL, artist_name varchar NOT NULL, artist_location varchar, artist_latitude varchar, artist_longitude varchar, CONSTRAINT artist_dim_pkey PRIMARY KEY (artist_id));""")
 
 time_table_create = ("""CREATE TABLE IF NOT EXISTS time_dim (start_time varchar NOT NULL, year varchar, month varchar, week varchar, weakday varchar, day varchar, hour varchar, CONSTRAINT time_dim_pkey PRIMARY KEY (start_time));""")
 
