@@ -22,7 +22,7 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time_dim (start_time timestam
 
 songplay_table_insert = ("""INSERT INTO songplay_fact (song_id, artist_id, session_id, user_id, level, location, start_time, user_agent) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""")
 
-user_table_insert = ("""INSERT INTO user_dim (user_id, first_name, last_name, gender, level) VALUES (%s, %s, %s, %s, %s) ON CONFLICT ON CONSTRAINT user_dim_pkey DO NOTHING""")
+user_table_insert = ("""INSERT INTO user_dim (user_id, first_name, last_name, gender, level) VALUES (%s, %s, %s, %s, %s) ON CONFLICT ON CONSTRAINT user_dim_pkey DO UPDATE SET level = EXCLUDED.level""")
  
 song_table_insert = ("""INSERT INTO song_dim (artist_id, song_id, title, duration, year) VALUES (%s, %s, %s, %s, %s) ON CONFLICT ON CONSTRAINT song_dim_pkey DO NOTHING""")
 
