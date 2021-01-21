@@ -12,8 +12,8 @@ songplay_table_create = ("""
     CREATE TABLE IF NOT EXISTS songplay_fact
         (
             songplay_id serial,
-            song_id varchar NOT NULL,
-            artist_id varchar NOT NULL,
+            song_id varchar,
+            artist_id varchar,
             session_id int, user_id int,
             level varchar, location varchar,
             start_time timestamp NOT NULL,
